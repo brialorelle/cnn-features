@@ -71,7 +71,7 @@ axis square; makepalettablescatter;
 figure(rdmFigure)
 subplot(1,numImageTypes+1,1)
 showRDM(squareform(origRDM(Index)));
-
+colormap(parula)
 
 %% Main CNN feature plotting loop
 for imageType = imageTypes
@@ -109,7 +109,7 @@ for imageType = imageTypes
         subplot(1, nCols, i)
     end
     showRDM(squareform(rdm_category(Index))); %% resorts for easier viewing of categories%    
-    
+    colormap(parula)
     %% compute mds and plot it
     [Y, e] = mdscale(squareform(rdm_category),2);
     figure(mdsFigure)
@@ -141,10 +141,11 @@ end
  if length(layerList)==1
      figure(mdsFigure);
      saveFigureHelper(saveFigFlag, saveDir, [layerList{1} 'MDS.png'])
-     
+     keyboard
      figure(rdmFigure); 
      saveFigureHelper(saveFigFlag, saveDir, [layerList{1} 'RDM.png'])
      close all;
+     keyboard
  end
 
 % %%  plot "route through shape space"
