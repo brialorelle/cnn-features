@@ -38,11 +38,16 @@ end
 for layerInd = 1:7
     % fit original RMD with original cnn features in each layer
     origCnnRDM=cnn_rdm_category.Originals{layerInd}';
-    temp= regstats(origNeuralRDM, origCnnRDM);
-    origFit(layerInd) = temp.rsquare;
+    origFitLayer= regstats(origNeuralRDM, origCnnRDM);
+    origFit(layerInd) = origFitLayer.rsquare;
+
     
     % now grab cnn rdms for this layer
     texCnnRDM=cnn_rdm_category.Texforms{layerInd}';
+    texFitLayer= regstats(origNeuralRDM, texCnnRDM);
+    texFit(layerInd) = texFitLayer.rsquare;
+    
+    %%
     silCnnRDM=cnn_rdm_category.Silhouettes{layerInd}';
     phaseCnnRDM=cnn_rdm_category.PhaseScrambled{layerInd}';
     
